@@ -15,14 +15,14 @@ vector<complex<double>> FFT(vector<complex<double>> &samples) {
 	
 	// Place all the even and odd samples in their respective arrays
 	for (int i = 0; i <= N/2; i++){
-		even[i]=samples[2*i];
-		odd[i]=samples[2*i+1];
+		even[i] = samples[2*i];
+		odd[i] = samples[2*i+1];
 	} 
 	
 	vector<complex<double>> DFT_even(size/2, 0);
 	vector<complex<double>> DFT_odd(size/2, 0);
 
-	// DFT of the odd and even samples
+	// DFT of the odd and even samples. Does this until we have one sample
 	DFT_even = FFT(even);
 	DFT_odd = FFT(odd);	
 	
@@ -41,7 +41,23 @@ vector<complex<double>> FFT(vector<complex<double>> &samples) {
 	return freq_bins;
 }
 
-
 int main() {
-	cout << "initial commit";
+	ifstream dataPoints("dataSet1");
+ 	if (!sensorValues) 
+  		cout << "Could not open dataset";
+    else 
+  		cout << "File opened correctly" << endl;
+  		
+  	double x = 0;
+  	double y = 0;
+  	double dataArray[100] = 0; 
+  	while(dataPoints)
+  		cin >> x >> y 
+  		
+
+	// Look at: http://stackoverflow.com/questions/10664105/how-to-draw-a-frequency-spectrum-from-a-fourier-transform
+  	int samplingRate;
+  	
+  	
+  	
 }
