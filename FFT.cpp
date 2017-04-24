@@ -23,7 +23,17 @@ vector<complex<double>> FFT(vector<complex<double>> &samples) {
 	FFT_even = FFT(even);
 	FFT_odd = FFT(odd);	
 	
+	vector<complex<double>> freq_bins(size, 0);
 	// recompile the the results into frequencybins 
+	for (k = 0; k < N/2 - 1; k++) {
+		t = FFT_even[k]
+		complex<double> complexFactor = polar(1.0, -2*pi*k/size) * FFT_odd[k]
+		
+		freq_bins[k] = t + complexFactor;
+		freq_bins[k+size/2] = t - complexFactor;
+	}
+	
+	return freq_bins;
 }
 
 
