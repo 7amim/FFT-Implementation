@@ -13,24 +13,29 @@ vector<complex<double>> FFT(vector<complex<double>> &samples) {
 	vector<complex<double>> even(size/2, 0);
 	vector<complex<double>> odd(size/2, 0);
 	
+	// Place all the even and odd samples in their respective arrays
 	for (int i = 0; i <= N/2; i++){
 		even[i]=samples[2*i];
 		odd[i]=samples[2*i+1];
 	} 
 	
-	vector<complex<double>> FFT_even(size/2, 0);
-	vector<complex<double>> FFT_odd(size/2, 0);
-	FFT_even = FFT(even);
-	FFT_odd = FFT(odd);	
+	vector<complex<double>> DFT_even(size/2, 0);
+	vector<complex<double>> DFT_odd(size/2, 0);
+
+	// DFT of the odd and even samples
+	DFT_even = FFT(even);
+	DFT_odd = FFT(odd);	
 	
 	vector<complex<double>> freq_bins(size, 0);
-	// recompile the the results into frequencybins 
+	// Recompile the the results into frequency bins 
 	for (k = 0; k < N/2 - 1; k++) {
 		t = FFT_even[k]
-		complex<double> complexFactor = polar(1.0, -2*pi*k/size) * FFT_odd[k]
+		complex<double> twiddleFactor = polar(1.0, -2*pi*k/size) * DFT_odd[k]
 		
-		freq_bins[k] = t + complexFactor;
-		freq_bins[k+size/2] = t - complexFactor;
+		freq_bins[k] = t + twiddleFactor;
+		
+		// Use symmetry pattern (i.e every addition of pi) 
+		freq_bins[k+size/2] = t - twiddleFactor;
 	}
 	
 	return freq_bins;
