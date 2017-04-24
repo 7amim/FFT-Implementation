@@ -34,7 +34,7 @@ vector<complex<double>> FFT(vector<complex<double>> &samples) {
 		
 		freq_bins[k] = t + twiddleFactor;
 		
-		// Use symmetry pattern (i.e every addition of pi) 
+		// Use symmetry pattern to reduce number of computations; everything repeats after K > N/2
 		freq_bins[k+size/2] = t - twiddleFactor;
 	}
 	
